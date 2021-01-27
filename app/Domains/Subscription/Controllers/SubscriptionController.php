@@ -4,6 +4,7 @@ namespace App\Domains\Subscription\Controllers;
 
 use App\Domains\Core\Response\HttpResponseTrait;
 use App\Domains\Device\Actions\RegisterDevice;
+use App\Domains\Subscription\Actions\FindSubscriptionByDeviceToken;
 use App\Domains\Subscription\DTO\PurchaseDto;
 use App\Domains\Device\DTO\RegisterDeviceDto;
 use App\Domains\Device\Entities\Device;
@@ -17,12 +18,21 @@ class SubscriptionController extends Controller
 {
     use HttpResponseTrait;
 
-    public function purchase(SubscriptionPurchaseRequest $request, Application $application, Device $device)
+    public function purchase(SubscriptionPurchaseRequest $request, Application $application)
     {
         $application->make(Purchase::class, [
             'data' => new PurchaseDto($request->validated())
-
         ]);
-//        return $this->ok();
+
+        return $this->created([]);
+    }
+
+    public function check(SubscriptionPurchaseRequest $request, Application $application)
+    {
+        $subscription = $application->make(FindSubscriptionByDeviceToken::class, [
+            'token' => $request->get('token')
+        ]);
+
+        return $this->created($subscription->get());
     }
 }

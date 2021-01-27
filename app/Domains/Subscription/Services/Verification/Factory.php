@@ -8,9 +8,9 @@ class Factory
     {
         switch ($os) {
             case "ios":
-                return new Android();
-            default:
                 return new Ios();
+            default:
+                return new Android();
         }
     }
 }

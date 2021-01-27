@@ -14,7 +14,6 @@ class SubscriptionPurchaseRequest extends FormRequest
     {
         return [
             'token' => 'required',
-            'os' => 'required'
         ];
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Domains\Device\Entities;
+namespace App\Domains\Subscription\Entities;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Device extends Authenticatable
+class Subscription extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table ='device';
+    protected $table ='subscription';
 
     /**
      * The attributes that are mass assignable.
@@ -19,11 +19,10 @@ class Device extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'u_id',
-        'app_id',
-        'os',
-        'language',
-        'token'
+        'device_id',
+        'expired_at',
+        'cancelled',
+        'cancelled_reason',
     ];
 
     /**

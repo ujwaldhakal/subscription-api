@@ -16,10 +16,11 @@ class DeviceController extends Controller
 
     public function register(CreateDeviceRequest $request, Application $application, Device $device)
     {
-        $application->make(RegisterDevice::class, [
+        $registeredDevice = $application->make(RegisterDevice::class, [
             'data' => new RegisterDeviceDto($request->validated()),
             'device' => $device
         ]);
-        return $this->ok();
+
+        return $this->ok(['token' => $registeredDevice->getDeviceToken()]);
     }
 }
