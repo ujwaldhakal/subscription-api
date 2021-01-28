@@ -28,6 +28,39 @@ that way we could know what are the things domain could do or be doing. With thi
 
 ## Api
 I have used postman for the documentation where i excessively use curl for testing but i always prefer them via test (TDD Approach). And if you are lazy like me just https://www.postman.com/collections/bfa0b7f797ffa5aabeab here are the collection  just import on postman
+* Device 
+   #### Register
+    Url : `http://localhost/api/v1/devices`
+  
+    Method: `POST`
+  
+    Body : `{"uID": string,"appID": string,"os": string}`
+    
+
+* Subscription
+    #### Purchase
+    Url : `http://localhost/api/v1/subscriptions`
+
+    Method: `POST`
+  
+    Body : `{"token": string}`
+
+    #### Check
+
+    Url : `http://localhost/api/v1/subscriptions/check`
+
+    Method: `POST`
+  
+    Body : `{"token": string}`
+
+    #### List
+
+    Url : `http://localhost/api/v1/subscriptions?expired=1`
+
+    Method: `GET`
+  
+    QUERY PARAMS : `expired=1 | renewed=1 | new=1`
+
 
 ## Assumptions
 Several assumptions were made during code as the domain requirement was quite not clear and i had assumed things on my own since its a coding test where several skills matter like architecture,design,modules interaction,readable code etc. Here are things done on assumption -:
