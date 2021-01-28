@@ -3,14 +3,11 @@
 namespace App\Domains\Subscription\Controllers;
 
 use App\Domains\Core\Response\HttpResponseTrait;
-use App\Domains\Device\Actions\RegisterDevice;
 use App\Domains\Subscription\Actions\FindSubscriptionByDeviceToken;
 use App\Domains\Subscription\DTO\PurchaseDto;
-use App\Domains\Device\DTO\RegisterDeviceDto;
-use App\Domains\Device\Entities\Device;
-use App\Domains\Device\Requests\CreateDeviceRequest;
 use App\Domains\Subscription\Actions\Purchase;
 use App\Domains\Subscription\Requests\SubscriptionPurchaseRequest;
+use App\Domains\Subscription\Resources\SubscriptionResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Application;
 
@@ -33,6 +30,7 @@ class SubscriptionController extends Controller
             'token' => $request->get('token')
         ]);
 
-        return $this->created($subscription->get());
+        return new SubscriptionResource($subscription->get());
+//        return $this->created(new SubscriptionResource($subscription->get()));
     }
 }

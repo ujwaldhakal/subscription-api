@@ -2,6 +2,7 @@
 
 namespace App\Domains\Subscription\Entities;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,6 +39,11 @@ class Subscription extends Authenticatable
     public function getOs() : string
     {
         return $this->os;
+    }
+
+    public function isExpired()
+    {
+        return Carbon::parse($this->expired_at)->isPast();
     }
 
 

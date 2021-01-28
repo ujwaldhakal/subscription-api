@@ -7,13 +7,13 @@ use App\Domains\Subscription\Entities\Subscription;
 
 class FindSubscriptionByDeviceToken
 {
-    private Subscription $subscription;
+    private $subscription;
     public function __construct(string $token, Subscription $subscription)
     {
         $device = app()->make(FindDeviceByToken::class,[
             'token' => $token
         ]);
-        $subscription = $subscription->where('device_id',$device->get()->id)->firstOrFail();
+        $subscription = $subscription->where('device_id',$device->get()->id)->first();
         $this->subscription = $subscription;
     }
 
