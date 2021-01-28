@@ -14,7 +14,7 @@ class FindSubscriptionByType
     public function __construct(SubscriptionByTypeDto $filters, Subscription $subscription)
     {
         if ($filters->expired) {
-//            $subscription = $subscription->expired();
+            $subscription = $subscription->expired();
         }
 
         if($filters->renewed) {
