@@ -38,7 +38,9 @@ class ResolvePendingSubscription extends Command
      */
     public function handle()
     {
-        $pendingSubscription = app()->make(FindPendingSubscriptions::class);
-        dd($pendingSubscription);
+        $devices = app()->make(FindPendingSubscriptions::class);
+        $devices->get()->each(function ($device) {
+            // with pending device one can perform tasks here
+        });
     }
 }

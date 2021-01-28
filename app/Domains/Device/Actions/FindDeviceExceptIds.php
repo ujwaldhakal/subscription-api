@@ -15,7 +15,7 @@ class FindDeviceExceptIds
 
     }
 
-    public function get(): ?Device
+    public function get()
     {
         return $this->device;
     }

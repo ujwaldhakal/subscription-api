@@ -12,7 +12,7 @@ class Subscription extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table ='subscription';
+    protected $table = 'subscription';
 
     /**
      * The attributes that are mass assignable.
@@ -36,7 +36,7 @@ class Subscription extends Authenticatable
         'remember_token',
     ];
 
-    public function getOs() : string
+    public function getOs(): string
     {
         return $this->os;
     }
@@ -44,6 +44,16 @@ class Subscription extends Authenticatable
     public function isExpired()
     {
         return Carbon::parse($this->expired_at)->isPast();
+    }
+
+    public function scopeExpired($q)
+    {
+      return $q->where('expired_at','<',Carbon::now());
+    }
+
+    public function scopeRenewed($q)
+    {
+      return $q->whereColumn('updated_at','>','created_at');
     }
 
 
