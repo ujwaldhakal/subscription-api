@@ -31,6 +31,5 @@ class SubscriptionController extends Controller
         ]);
 
         return new SubscriptionResource($subscription->get());
-//        return $this->created(new SubscriptionResource($subscription->get()));
     }
 }
