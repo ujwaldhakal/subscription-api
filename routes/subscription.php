@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::group(['prefix' => 'subscription'])
+Route::prefix('subscriptions')->group(function(){
+    Route::post('/', [\App\Domains\Subscription\Controllers\SubscriptionController::class,'purchase']);
+    Route::get('/check', [\App\Domains\Subscription\Controllers\SubscriptionController::class,'check']);
+});

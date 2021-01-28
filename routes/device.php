@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('device')->group(function(){
+Route::prefix('devices')->group(function(){
     Route::post('/', [\App\Domains\Device\Controllers\DeviceController::class,'register']);
 });
