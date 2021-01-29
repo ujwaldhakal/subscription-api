@@ -12,13 +12,6 @@ class RegisterDevice
 
     public function __construct(RegisterDeviceDto $data, Device $device)
     {
-        $existingDevice = $device->where('u_id', $data->uid)->first();
-
-//        if ($existingDevice) {
-//            $this->token = $existingDevice->token;
-//            return;
-//        } // one can create multiple device
-
         $device = $this->registerDevice($data, $device);
         $this->token = $device->token;
         return;

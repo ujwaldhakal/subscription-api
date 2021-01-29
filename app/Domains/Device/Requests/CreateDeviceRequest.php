@@ -16,6 +16,7 @@ class CreateDeviceRequest extends FormRequest
             'uID' => 'required|max:255',
             'appID' => 'required|string',
             'os' => 'required|string',
+            'language' => 'nullable'
         ];
     }
 }

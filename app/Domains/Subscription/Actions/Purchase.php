@@ -6,6 +6,7 @@ use App\Domains\Device\Actions\FindDeviceByToken;
 use App\Domains\Device\Entities\Device;
 use App\Domains\Subscription\DTO\PurchaseDto;
 use App\Domains\Subscription\Entities\Subscription;
+use App\Domains\Subscription\Exceptions\SubscriptionAlreadyExists;
 use App\Domains\Subscription\Services\Verification\Factory;
 use App\Domains\Subscription\Services\Verification\IverificationPurchase;
 use Carbon\Carbon;
@@ -22,6 +23,9 @@ class Purchase
             'token' => $data->token
         ]);
         $this->device = $device->get();
+        if ($subscription->where('device_id',$this->device->id)->first()) {
+            throw new SubscriptionAlreadyExists();
+        }
         $this->verificationHandler = Factory::create($this->device->os);
         $response = $this->verificationHandler->verify($data->token);
         $this->createSubscription($this->device,$subscription,$response['expired_at']);
