@@ -11,7 +11,7 @@ Api made on Php with Laravel framework for handling mobile subscription.
 
 ## Project Architecture
 In this project we are moving away from three layered architecture aka MVC one and trying to follow Clean Architecture where we could focus on capturing the Business Needs more clear. This architecture is similar to CQRS where i have named those read and write as action since
-that way we could know what are the things domain could do or be doing. With this way it will be easier to talk with Domain Experts,Stackholder since i am trying to use exact phrases that doc is representing (in real life it will the things stackholders will talk about.
+that way we could know what are the things domain could do or be doing. With this way it will be easier to talk with Domain Experts,Stakeholder.
 I have tried to create the low coupling between modules so the communication between modules only takes places via action i.e read or write.
 
 * App
@@ -82,5 +82,6 @@ Several assumptions were made during code as the domain requirement was quite no
 * Could have fully gone with the CQRS but was more concern seperating out the bounded context
 * For high traffic we could have adopt the option like serverless & kubernetes in future where load balancer will distribute the app load among servers
 * Since the read and write has been seperated out it would be easier to cache the queries
-* Event driven pattern could have been used. Since there are less things to do so, i didnt think of over engineering them
+* Event driven pattern could have been used. Since there are less things to do so, i didnt think of over engineering them.
+* Use queue for non blocking code & long running jobs and its easy to do in Laravel.
 
